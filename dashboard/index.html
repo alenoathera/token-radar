@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-Token Value Radar: 289 Pre-Launch Protocols Ranked by Implied Value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<div class="app-layout">
+  <header class="app-header">
+    <div class="brand">
+      <div class="brand-icon">⚡</div>
+      <div class="brand-text">
+        <h1>Pre-Token Value Radar</h1>
+        <p class="subtitle">Empirical launch valuation & farming roadmap for 289 pre-token protocols</p>
+      </div>
+    </div>
+    <div class="header-meta">
+      <div class="meta-pill"><span class="meta-label">Model:</span> <strong id="meta-model">radar-2-fitted</strong></div>
+      <div class="meta-pill"><span class="meta-label">Snapshot:</span> <strong id="meta-date">2026-11-14</strong></div>
+      <div class="meta-pill status-pill"><span class="status-dot"></span> <strong>Escrow Verified</strong></div>
+    </div>
+  </header>
+
+  <nav class="view-tabs" role="tablist">
+    <button class="tab-btn active" id="tab-btn-board" role="tab" aria-selected="true" data-tab="board">Pre-Token Radar (<span id="count-board">289</span>)</button>
+    <button class="tab-btn" id="tab-btn-live" role="tab" aria-selected="false" data-tab="live">Live Benchmark Tokens (<span id="count-live">0</span>)</button>
+    <button class="tab-btn" id="tab-btn-model" role="tab" aria-selected="false" data-tab="model">Fitted Valuation Model</button>
+  </nav>
+
+  <main id="main-content">
+    <section class="kpi-grid" id="kpi-strip" aria-label="Key Performance Indicators"></section>
+
+    <!-- Pre-Token Board View -->
+    <div class="view-panel active" id="panel-board">
+      <div class="controls-bar">
+        <div class="search-box">
+          <input type="search" id="input-search" placeholder="Search protocol, slug, chain, category..." aria-label="Search protocols">
+        </div>
+        <div class="filter-group">
+          <select id="select-category" aria-label="Filter by category">
+            <option value="all">All Categories</option>
+          </select>
+          <select id="select-chain" aria-label="Filter by chain">
+            <option value="all">All Chains</option>
+          </select>
+          <label class="toggle-control">
+            <input type="checkbox" id="check-watchlist">
+            <span class="toggle-label">Watchlist Only (<span id="count-watchlist">40</span>)</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="board-table">
+          <thead>
+            <tr>
+              <th data-sort="rank" class="sortable sorted-asc">Rank</th>
+              <th data-sort="name" class="sortable">Protocol</th>
+              <th data-sort="category" class="sortable">Category</th>
+              <th data-sort="chains">Primary Chains</th>
+              <th data-sort="tvl" class="sortable num-col">TVL</th>
+              <th data-sort="change" class="sortable num-col">7d Change</th>
+              <th data-sort="implied" class="sortable num-col">Implied Value</th>
+              <th data-sort="age" class="sortable num-col">Age</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="board-tbody"></tbody>
+        </table>
+      </div>
+      <div class="table-footer" id="board-footer"></div>
+    </div>
+
+    <!-- Live Tokens View -->
+    <div class="view-panel" id="panel-live" style="display: none;">
+      <div class="info-banner">
+        <strong>Market Benchmark Pool:</strong> Live-token protocols from the snapshot whose token already trades in open markets. These market cap-to-TVL ratios provide the empirical training data for the radar's category multiples.
+      </div>
+      <div class="table-container">
+        <table class="data-table" id="live-table">
+          <thead>
+            <tr>
+              <th class="num-col">#</th>
+              <th>Protocol</th>
+              <th>Category</th>
+              <th>Chains</th>
+              <th class="num-col">Market Cap</th>
+              <th class="num-col">TVL</th>
+              <th class="num-col">Mcap / TVL Ratio</th>
+              <th class="num-col">7d Change</th>
+            </tr>
+          </thead>
+          <tbody id="live-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Model Explainer View -->
+    <div class="view-panel" id="panel-model" style="display: none;">
+      <div class="model-explainer" id="model-content"></div>
+    </div>
+  </main>
+
+  <!-- Protocol Detail Modal Drawer -->
+  <div class="modal-backdrop" id="modal-backdrop" style="display: none;" aria-hidden="true">
+    <div class="detail-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close details">&times;</button>
+      <div class="modal-body" id="modal-content"></div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <p>Pre-Token Value Radar · Data sourced from DefiLlama sealed protocol snapshot. Records indicate no token issued; not financial advice.</p>
+  </footer>
+</div>
+
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
